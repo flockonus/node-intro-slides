@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>intro to Node.js / io.js</title>
+    <meta name="author" content="Fabiano Pereira Soriani">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <!--  TODO change-me -->
+    <link rel="stylesheet" href="css/theme/blood.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="reveal">
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+
+        <section>
+          <h1>Node.js is Scary</h1>
+          <h3>A gentle introduction</h3>
+          <p>
+            <small>
+              Created by <a href="https://twitter.com/flockonus" target="_blank">Fabiano PS</a> April 2015
+              <br>
+              <br>
+              <a href="https://www.axiomzen.co/" target="_blank">Zenhub / AxiomZen</a>
+              <br> Hiring smart, dedicated, self driven, pasionate developers.
+            </small>
+          </p>
+        </section>
+
+
+        <section style="clear:both;">
+          <h2>Presenter</h2>
+          <div style="float:left; width:30%">
+            <img src="https://www.axiomzen.co/images/team/fabiano-soriani.jpg"/>
+          </div>
+          <div style="float:right; width:67%;">
+            <ul style="display:table-cell;vertical-align: middle; height: 300px; list-style-type: none;">
+              <li>5y developing web software</li>
+              <li><span style="-webkit-transform: rotate(270deg); display: inline-block; letter-spacing: -2px;">&lt;3</span> Open Web</li>
+              <li>3+ years full time JS</li>
+            </ul>
+          </div>
+        </section>
+
+
+        <section>
+          <h1>Who using?</h1>
+          <div style="text-align: left; padding: 0 16%;">
+            <p class="fragment">Zenhub, Walmart, eBay</p>
+            <p class="fragment">&nbsp;&nbsp;..Microsoft, Yahoo, Linkedin</p>
+            <p class="fragment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;..Uber, Medium +1000s more</p>
+            <p class="fragment"></p>
+          </div>
+          <a href="http://www.quora.com/What-are-the-biggest-websites-built-with-Node-js-on-the-server-side" target="_blank">See a trendy list</a> or <a href="https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node" target="_blank">the main one</a>.
+        </section>
+
+
+        <section>
+          <h1>Who else?</h1>
+          <p>Downloads using the <a href="http://npm-stat.com/" target="_blank">official package manager</a>:</p>
+          <img src="media/npm-history.png" style="min-width: 120%; margin-left: -10%;" />
+          <p><i>no wonder Node.js is called a cancer</i></p>
+        </section>
+
+
+        <section>
+          <h1>Who job?</h1>
+          <img src="media/jobgraph2.png" />
+          <p>10% of all jobs at <a href="http://www.indeed.com/jobtrends/node.js.html">Indeed</a></p>
+        </section>
+
+
+        <section>
+          <h1>What?</h1>
+          <blockquote cite="">
+            "Node.js is an open source, cross-platform runtime environment for server-side and networking applications based on <b>Javascript</b> language"
+          </blockquote>
+          <p class="fragment">
+            It's currently popular for creating <b>web servers</b>
+            <br><i>API, website, webapp, real-time, &amp;+</i>
+          </p>
+        </section>
+
+
+        <section>
+          <h2>When?</h2>
+          <ul>
+            <li>Born in <b>2009</b> as a hack on top of engine from google chrome (V8)</li>
+            <li>Sponsored and trademarked by Joyent.</li>
+            <li>solid low level APIs</li>
+            <li>outstanding package manager</li>
+            <li>inclusive community</li>
+          </ul>
+        </section>
+
+
+        <section>
+          <h1>Nowadays</h1>
+          <p>
+            <img src="media/fork.png">
+          </p>
+          <p>
+            Considerable part of the Node.js community forked the main project from Joyent, and is now publishing a parallel branch with the name of <a href="https://iojs.org/en/index.html">IO.js</a>
+          </p>
+        </section>
+
+
+        <section>
+          <h1>Why using?</h1>
+          <p>Recommended when you are:</p>
+          <ul>
+            <li>ok/like Javascript</li>
+            <li>prototyping ideas</li>
+            <li>iterate fast</li>
+            <li>real time apps</li>
+            <li>mobile/web API</li>
+            <li>isomorphic websites</li>
+          </ul>
+        </section>
+
+
+        <section>
+          <h1>Why not?</h1>
+          <p><b>(No Hard Rules)</b> not Recommended for:</p>
+          <ul>
+            <li>you really dislike Javascript</li>
+            <li>when things cannot break (building a bank/rocket/satellite)</li>
+            <li>when you can afford to focus only backend</li>
+            <li>dependency on libraries exclusive for other language</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>How does it look like?</h2>
+          <h3>Example echo server</h3>
+          <pre><code data-trim>
+var express = require('express')
+var app = express()
+
+app.get('*', echo);
+
+function echo(req,res){
+  res.send({
+    path: req.path,
+    query: req.query
+  })
+}
+
+app.listen(3000);
+console.log('Express view app listening port 3000');
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>How to start?</h1>
+          <ol style="line-height: 150%;">
+            <li>Learn the basics at <a href="https://nodejs.org/documentation/">nodejs.org</a> </li>
+            <li>¿ Create an API ? Check <a href="http://koajs.com/">Koa.js</a> </li>
+            <li>¿ Create realtime ? Check <a href="http://socket.io/">Socket.io</a> </li>
+            <li>¿ Laugh? Check <a href="http://nodejsreactions.tumblr.com/">NodeReactions</a> </li>
+            <li>Everything else, Google is your friend!</li>
+          </ol>
+        </section>
+
+        <section>
+          <h1>y eso!</h1>
+          <br>
+          <h3>Questions?</h3>
+          <br>
+          <h4><i>Wondering if Node is for you? Let's talk!</i></h4>
+          <br>
+          <h4><i>AxiomZen is hiring experienced JS developers</i></h4>
+          <aside style="clear:both; text-align: center;">
+            <div style="width:32%; float: left;">Contact:</div>
+            <div style="width:32%; float: left;"> <a href="mailto:fabiano@axomzen.co">fabiano@axomzen.co</a> </div>
+            <div style="width:32%; float: left;"><a href="https://twitter.com/flockonus">@flockonus</a></div>
+          </aside>
+          
+        </section>
+
+
+      </div>
+    </div>
+
+<style type="text/css">
+.present ul li {
+  line-height: 200%;
+}
+</style>
+
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'concave', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+  </body>
+</html>
