@@ -39,14 +39,14 @@
 
         <section>
           <h1>Node.js is Scary</h1>
-          <h3>What? Who? Where? Why? How?</h3>
+          <h3>A gentle introduction</h3>
           <p>
             <small>
               Created by <a href="https://twitter.com/flockonus" target="_blank">Fabiano PS</a> April 2015
               <br>
               <br>
               <a href="https://www.axiomzen.co/" target="_blank">Zenhub / AxiomZen</a>
-              <br> we are hiring!
+              <br> Hiring smart, dedicated, self driven, pasionate developers.
             </small>
           </p>
         </section>
@@ -57,11 +57,11 @@
           <div style="float:left; width:30%">
             <img src="https://www.axiomzen.co/images/team/fabiano-soriani.jpg"/>
           </div>
-          <div style="float:right; width:68%;">
-            <ul style="display:table-cell;vertical-align: middle; height: 300px; list-style-type: none;  line-height: 180%;">
+          <div style="float:right; width:67%;">
+            <ul style="display:table-cell;vertical-align: middle; height: 300px; list-style-type: none;">
               <li>5y developing web software</li>
               <li><span style="-webkit-transform: rotate(270deg); display: inline-block; letter-spacing: -2px;">&lt;3</span> Open Web</li>
-              <li>2 years full time JS</li>
+              <li>3+ years full time JS</li>
             </ul>
           </div>
         </section>
@@ -75,7 +75,7 @@
             <p class="fragment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;..Uber, Medium +1000s more</p>
             <p class="fragment"></p>
           </div>
-          <a href="http://www.quora.com/What-are-the-biggest-websites-built-with-Node-js-on-the-server-side" target="_blank">See a trendy list</a> or <a href="https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node" target="_blank">the official one</a>.
+          <a href="http://www.quora.com/What-are-the-biggest-websites-built-with-Node-js-on-the-server-side" target="_blank">See a trendy list</a> or <a href="https://github.com/joyent/node/wiki/Projects,-Applications,-and-Companies-Using-Node" target="_blank">the main one</a>.
         </section>
 
 
@@ -108,17 +108,24 @@
 
         <section>
           <h2>When?</h2>
-          <p>
-            Born in 2009 as a hack on top of V8, the JS engine from google chrome. Incubated and trademarked by Joyent.
-          </p>
-          <p>
-           The ecosystem was small but had the right pieces, contrary to what's expected of Javascript it exposed very good low level APIs, and an outstanding package management system making it easy to create software by composing modules and creating your own.
-          </p>
+          <ul>
+            <li>Born in <b>2009</b> as a hack on top of engine from google chrome (V8)</li>
+            <li>Sponsored and trademarked by Joyent.</li>
+            <li>solid low level APIs</li>
+            <li>outstanding package manager</li>
+            <li>inclusive community</li>
+          </ul>
         </section>
 
 
         <section>
-          <h1></h1>
+          <h1>Nowadays</h1>
+          <p>
+            <img src="media/fork.png">
+          </p>
+          <p>
+            Considerable part of the Node.js community forked the main project from Joyent, and is now publishing a parallel branch with the name of <a href="https://iojs.org/en/index.html">IO.js</a>
+          </p>
         </section>
 
 
@@ -140,21 +147,70 @@
           <h1>Why not?</h1>
           <p><b>(No Hard Rules)</b> not Recommended for:</p>
           <ul>
-            <li>when things cannot break (building a bank/rocket)</li>
-            <li>when you can afford to focus only backend</li>
             <li>you really dislike Javascript</li>
-            <li>...</li>
+            <li>when things cannot break (building a bank/rocket/satellite)</li>
+            <li>when you can afford to focus only backend</li>
+            <li>dependency on libraries exclusive for other language</li>
           </ul>
         </section>
 
         <section>
+          <h2>How does it look like?</h2>
+          <h3>Example echo server</h3>
+          <pre><code data-trim>
+var express = require('express')
+var app = express()
+
+app.get('*', echo);
+
+function echo(req,res){
+  res.send({
+    path: req.path,
+    query: req.query
+  })
+}
+
+app.listen(3000);
+console.log('Express view app listening port 3000');
+          </code></pre>
+        </section>
+
+        <section>
           <h1>How to start?</h1>
-          ...
+          <ol style="line-height: 150%;">
+            <li>Learn the basics at <a href="https://nodejs.org/documentation/">nodejs.org</a> </li>
+            <li>¿ Create an API ? Check <a href="http://koajs.com/">Koa.js</a> </li>
+            <li>¿ Create realtime ? Check <a href="http://socket.io/">Socket.io</a> </li>
+            <li>¿ Laugh? Check <a href="http://nodejsreactions.tumblr.com/">NodeReactions</a> </li>
+            <li>Everything else, Google is your friend!</li>
+          </ol>
+        </section>
+
+        <section>
+          <h1>y eso!</h1>
+          <br>
+          <h3>Questions?</h3>
+          <br>
+          <h4><i>Wondering if Node is for you? Let's talk!</i></h4>
+          <br>
+          <h4><i>AxiomZen is hiring experienced JS developers</i></h4>
+          <aside style="clear:both; text-align: center;">
+            <div style="width:32%; float: left;">Contact:</div>
+            <div style="width:32%; float: left;"> <a href="mailto:fabiano@axomzen.co">fabiano@axomzen.co</a> </div>
+            <div style="width:32%; float: left;"><a href="https://twitter.com/flockonus">@flockonus</a></div>
+          </aside>
+          
         </section>
 
 
       </div>
     </div>
+
+<style type="text/css">
+.present ul li {
+  line-height: 200%;
+}
+</style>
 
 
     <script src="lib/js/head.min.js"></script>
